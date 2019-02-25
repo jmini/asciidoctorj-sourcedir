@@ -24,32 +24,32 @@ public class SetSourcedirPreprocessor extends Preprocessor {
     }
 
     @Override
-    public PreprocessorReader process(Document document, PreprocessorReader reader) {
+    public void process(Document document, PreprocessorReader reader) {
         if (!document.getAttributes()
                 .containsKey("sourcedir-definition")) {
             //TODO log a warning.
-            return reader;
+            return;
         }
         String sourceDirDefinition = document.getAttributes()
                 .get("sourcedir-definition")
                 .toString();
         if (sourceDirDefinition.isEmpty()) {
             //TODO log a warning.
-            return reader;
+            return;
         }
         Path sourceDirPath = Paths.get(sourceDirDefinition);
 
         if (!document.getAttributes()
                 .containsKey("docfile")) {
             //TODO log a warning.
-            return reader;
+            return;
         }
         String docfile = document.getAttributes()
                 .get("docfile")
                 .toString();
         if (docfile.isEmpty()) {
             //TODO log a warning.
-            return reader;
+            return;
         }
         Path docdirPath = Paths.get(docfile)
                 .getParent();
@@ -61,6 +61,5 @@ public class SetSourcedirPreprocessor extends Preprocessor {
         }
         document.getAttributes()
                 .put("sourcedir", sourcedir);
-        return reader;
     }
 }
