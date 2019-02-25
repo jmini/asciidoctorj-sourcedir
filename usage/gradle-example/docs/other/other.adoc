@@ -1,0 +1,8 @@
+= Gradle other page
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Suspendisse et purus tempus, fermentum diam sed, efficitur massa.
+
+DIR: {sourcedir}
+
+<<../index.adoc#, Back to index page>>
