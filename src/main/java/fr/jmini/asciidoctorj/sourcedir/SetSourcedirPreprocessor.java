@@ -24,42 +24,48 @@ public class SetSourcedirPreprocessor extends Preprocessor {
     }
 
     @Override
-    public PreprocessorReader process(Document document, PreprocessorReader reader) {
+    public void process(Document document, PreprocessorReader reader) {
+        System.err.println("XXX docfile: " + document.getAttributes()
+                .get("docfile")
+                .toString());
         if (!document.getAttributes()
                 .containsKey("sourcedir-definition")) {
             //TODO log a warning.
-            return reader;
+            return;
         }
         String sourceDirDefinition = document.getAttributes()
                 .get("sourcedir-definition")
                 .toString();
         if (sourceDirDefinition.isEmpty()) {
             //TODO log a warning.
-            return reader;
+            return;
         }
         Path sourceDir = Paths.get(sourceDirDefinition);
+        System.err.println("XXX sourceDir: " + sourceDir);
 
         if (!document.getAttributes()
                 .containsKey("docdir")) {
             //TODO log a warning.
-            return reader;
+            return;
         }
         String docdir = document.getAttributes()
                 .get("docdir")
                 .toString();
         if (docdir.isEmpty()) {
             //TODO log a warning.
-            return reader;
+            return;
         }
         Path docdirPath = Paths.get(docdir);
+        System.err.println("XXX docdirPath: " + sourceDir);
 
         String sourcedir = docdirPath.relativize(sourceDir)
                 .toString();
         if (!sourcedir.isEmpty()) {
             sourcedir = sourcedir + "/";
         }
+        System.err.println("XXX sourcedir: " + sourcedir);
+
         document.getAttributes()
                 .put("sourcedir", sourcedir);
-        return reader;
     }
 }

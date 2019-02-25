@@ -58,6 +58,7 @@ For a complete example, see: git-link:usage/gradle-example/build.gradle[build.gr
 |===
 | Asciidoctorj version | {project-name} version
 | `1.5.x` | `1.0.0`
+| `1.6.x` | `1.1.0`
 |===
 
 The lattest version of this extension is built and tested with version `{asciidoctorj-version}` of `org.asciidoctor:asciidoctorj`.
