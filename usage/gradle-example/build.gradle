@@ -26,10 +26,9 @@ asciidoctor {
                   'idseparator'          : '-']
     repositories {
         mavenCentral()
-        mavenLocal()
     }
     dependencies {
-        asciidoctor 'fr.jmini.asciidoctorj:sourcedir:1.0.0-SNAPSHOT' // <1>
+        asciidoctor 'fr.jmini.asciidoctorj:sourcedir:1.0.0' // <1>
     }
 }
 // end::task[]
