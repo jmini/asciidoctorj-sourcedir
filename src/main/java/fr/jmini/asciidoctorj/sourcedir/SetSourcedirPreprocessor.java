@@ -1,0 +1,65 @@
+/*********************************************************************
+* Copyright (c) 2019 Jeremie Bresson
+*
+* This program and the accompanying materials are made
+* available under the terms of the Eclipse Public License 2.0
+* which is available at https://www.eclipse.org/legal/epl-2.0/
+*
+* SPDX-License-Identifier: EPL-2.0
+**********************************************************************/
+package fr.jmini.asciidoctorj.sourcedir;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Map;
+
+import org.asciidoctor.ast.Document;
+import org.asciidoctor.extension.Preprocessor;
+import org.asciidoctor.extension.PreprocessorReader;
+
+public class SetSourcedirPreprocessor extends Preprocessor {
+
+    public SetSourcedirPreprocessor(Map<String, Object> config) {
+        super(config);
+    }
+
+    @Override
+    public PreprocessorReader process(Document document, PreprocessorReader reader) {
+        if (!document.getAttributes()
+                .containsKey("sourcedir-definition")) {
+            //TODO log a warning.
+            return reader;
+        }
+        String sourceDirDefinition = document.getAttributes()
+                .get("sourcedir-definition")
+                .toString();
+        if (sourceDirDefinition.isEmpty()) {
+            //TODO log a warning.
+            return reader;
+        }
+        Path sourceDir = Paths.get(sourceDirDefinition);
+
+        if (!document.getAttributes()
+                .containsKey("docdir")) {
+            //TODO log a warning.
+            return reader;
+        }
+        String docdir = document.getAttributes()
+                .get("docdir")
+                .toString();
+        if (docdir.isEmpty()) {
+            //TODO log a warning.
+            return reader;
+        }
+        Path docdirPath = Paths.get(docdir);
+
+        String sourcedir = docdirPath.relativize(sourceDir)
+                .toString();
+        if (!sourcedir.isEmpty()) {
+            sourcedir = sourcedir + "/";
+        }
+        document.getAttributes()
+                .put("sourcedir", sourcedir);
+        return reader;
+    }
+}
