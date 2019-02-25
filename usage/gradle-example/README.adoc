@@ -12,5 +12,8 @@ The `fr.jmini.asciidoctorj:sourcedir` jar can be declared as dependency of the `
 ----
 include::build.gradle[tags=task,indent=0]
 ----
+<1> Dependency declaration
+<2> Addition of the `sourcedir-definition`, must be the same value as "3"
+<3> Source directory definition for the gradle plugin
 
 //end::gradle-integration[]

@@ -15,24 +15,21 @@ asciidoctorj {
 
 // tag::task[]
 asciidoctor {
-    sourceDir = file('docs')
+    sourceDir = file('docs') // <3>
     outputDir = file('build/generated-docs')
-    attributes = ['project-version'      : "$version",
-                  'sourcedir-definition' : file('docs'),
-                  'source-highlighter'   : 'coderay',
-                  'imagesdir'            : '',
+    attributes = ['sourcedir-definition' : file('docs'), // <2>
+                  'project-version'      : "$version",  
                   'toc'                  : 'left',
                   'icons'                : 'font',
                   'sectanchors'          : 'true',
                   'idprefix'             : '',
-                  'idseparator'          : '-',
-                  'docinfo1'             : 'true']
+                  'idseparator'          : '-']
     repositories {
         mavenCentral()
         mavenLocal()
     }
     dependencies {
-        asciidoctor "fr.jmini.asciidoctorj:sourcedir:1.0.0-SNAPSHOT"
+        asciidoctor 'fr.jmini.asciidoctorj:sourcedir:1.0.0-SNAPSHOT' // <1>
     }
 }
 // end::task[]

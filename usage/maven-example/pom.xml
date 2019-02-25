@@ -5,7 +5,7 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <asciidoctorj.version>1.6.1</asciidoctorj.version>
+    <asciidoctorj.version>1.5.7</asciidoctorj.version>
     <jruby.version>9.1.17.0</jruby.version>
     <asciidoctor.maven.plugin.version>1.5.7.1</asciidoctor.maven.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,12 +44,13 @@
 <!-- end::mvn-plugin[] -->
           <sourceDirectory>docs</sourceDirectory>
           <outputDirectory>${adoc.output}</outputDirectory>
+          <preserveDirectories>true</preserveDirectories>
           <backend>html5</backend>
           <sourceHighlighter>coderay</sourceHighlighter>
 <!-- tag::mvn-plugin[] -->
           <!-- ... (other configuration) -->
           <attributes>
-            <sourcedir-definition>${project.build.sourceDirectory}</sourcedir-definition>
+            <sourcedir-definition>${project.basedir}/docs</sourcedir-definition>
 <!-- end::mvn-plugin[] -->
 s            <revdate>${build.date}</revdate>
             <project-version>${project.version}</project-version>
@@ -58,8 +59,12 @@ s            <revdate>${build.date}</revdate>
             <sectanchors>true</sectanchors>
             <idprefix />
             <idseparator>-</idseparator>
+<!-- tag::mvn-plugin[] -->
+            <!-- ... (other attributes) -->
           </attributes>
         </configuration>
+        <!-- ... (other blocks like executions) -->
+<!-- end::mvn-plugin[] -->
         <executions>
           <execution>
             <id>generate-adoc</id>
