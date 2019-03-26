@@ -52,7 +52,7 @@
           <attributes>
             <sourcedir-definition>${project.basedir}/docs</sourcedir-definition>
 <!-- end::mvn-plugin[] -->
-s            <revdate>${build.date}</revdate>
+            <revdate>${build.date}</revdate>
             <project-version>${project.version}</project-version>
             <toc>left</toc>
             <icons>font</icons>
