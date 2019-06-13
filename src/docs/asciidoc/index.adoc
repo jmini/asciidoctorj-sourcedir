@@ -21,6 +21,9 @@ TIP: Do you want to improve this page? Please git-link:self[edit it on GitHub, e
 
 == Description
 
+INFO: with version `2.1.0` of the Asciidoctor Gradle Plugin, this plugin is no longer necessary:
+The variable `gradle-relative-srcdir` provided by the plugin contains the same value.
+
 In complex asciidoctorj setup (using maven or gradle), it might be usefull to know the relative path to the source directory.
 The "{project-name}" extension is a preprocessor that provides this value as new attribute: `sourcedir`.
 
